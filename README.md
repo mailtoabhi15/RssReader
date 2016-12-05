@@ -1,4 +1,5 @@
 # RssReader
+This Project is part of AND Project on Material Design and thus uses the skeleton code from the provided material in the cource @ Udacity
 
 ##Project Overview
 In this project, We will redesign an app to follow the Material Design guidelines and translate a set of static design mocks to a living and breathing app.
