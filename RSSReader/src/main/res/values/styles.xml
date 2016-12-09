@@ -17,25 +17,26 @@
 
 <resources>
 
-    <style name="Theme.Bacon" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <!--<style name="Theme.Bacon" parent="@style/Theme.AppCompat.Light.NoActionBar">-->
 
-    </style>
+    <!--</style>-->
 
-    <style name="Theme.Bacon.Detail">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
+    <!--<style name="Theme.Bacon.Detail">-->
+        <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
+    <!--</style>-->
 
     <!-- Dixit: Adding my own Theme for teh project-->
-    <style name="Theme.Bacon.NoActionBar" parent="Theme.AppCompat.NoActionBar" >
-        <item name="colorPrimary">@android:color/holo_red_light</item>
-        <item name="colorPrimaryDark">@android:color/holo_red_dark</item>
-        <item name="colorAccent">@android:color/holo_red_light</item>
-        <item name="android:colorBackground">@android:color/holo_green_light</item>
-        <item name="android:colorForeground">@color/abc_primary_text_material_dark</item>
-        <item name="android:textColorPrimaryInverse">@android:color/holo_orange_light</item>
-        <item name="android:textColorPrimary">@android:color/holo_blue_dark</item>
-        <item name="android:textColorSecondary">@android:color/holo_orange_dark</item>
-        <item name="android:textColorSecondaryInverse">@android:color/holo_orange_light</item>
+    <style name="MyTheme.Light.DarkActionBar" parent="Theme.AppCompat.Light.DarkActionBar" >
+        <item name="colorPrimary">#F44336</item>
+        <item name="colorPrimaryDark">#D32F2F</item>
+        <item name="colorAccent">#FF8A80</item>
+        <item name="android:colorBackground">#FFEBEE</item>
+        <item name="android:colorForeground">#D32F2F</item>
+        <item name="android:textColorPrimaryInverse">#FFEBEE</item>
+        <item name="android:textColorPrimary">#D32F2F</item>
+        <item name="android:textColorSecondary">#FF8A80</item>
+        <item name="android:textColorSecondaryInverse">#F44336</item>
+        <item name="android:windowBackground">@color/cardview_light_background</item>
     </style>
 
 </resources>
