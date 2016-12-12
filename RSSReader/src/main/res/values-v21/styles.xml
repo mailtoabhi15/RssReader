@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="MyTheme.Light.DarkActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="MyTheme.Light.DarkActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#F44336</item>
         <item name="colorPrimaryDark">#D32F2F</item>
         <item name="colorAccent">#FF8A80</item>
         <item name="android:colorBackground">#FFEBEE</item>
         <item name="android:colorForeground">#D32F2F</item>
         <item name="android:textColorPrimaryInverse">#D32F2F</item>
-        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:textColorPrimary">#D32F2F</item>
         <item name="android:navigationBarColor">#F44336</item>
         <item name="android:textColorSecondary">#FF8A80</item>
         <item name="android:textColorSecondaryInverse">#F44336</item>

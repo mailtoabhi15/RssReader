@@ -26,7 +26,7 @@
     <!--</style>-->
 
     <!-- Dixit: Adding my own Theme for teh project-->
-    <style name="MyTheme.Light.DarkActionBar" parent="Theme.AppCompat.Light.DarkActionBar" >
+    <style name="MyTheme.Light.DarkActionBar" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="colorPrimary">#F44336</item>
         <item name="colorPrimaryDark">#D32F2F</item>
         <item name="colorAccent">#FF8A80</item>
