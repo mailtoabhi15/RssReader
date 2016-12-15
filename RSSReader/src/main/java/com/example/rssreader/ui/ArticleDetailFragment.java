@@ -125,7 +125,7 @@ public class ArticleDetailFragment extends Fragment implements
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 //        actionBar.setHomeButtonEnabled(true);
 
-        Toolbar toolbar = (Toolbar)mRootView.findViewById(R.id.detail_toolbar);
+        Toolbar toolbar = (Toolbar) mRootView.findViewById(R.id.detail_toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,20 +138,10 @@ public class ArticleDetailFragment extends Fragment implements
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            // Respond to the action bar's Up/Home button
-//            case android.R.id.home:
-//
-//                return true;
-//        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_article_detail, container, false);
 //        mDrawInsetsFrameLayout = (DrawInsetsFrameLayout)
 //                mRootView.findViewById(R.id.draw_insets_frame_layout);
@@ -187,8 +177,7 @@ public class ArticleDetailFragment extends Fragment implements
                 if (netwrkInfo == null || !netwrkInfo.isConnected()) {
                     Snackbar.make(view, R.string.nonetwork, Snackbar.LENGTH_LONG).show();
 
-                }
-                else {
+                } else {
                     startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
                             .setType("text/plain")
                             .setText("Some sample text")
@@ -196,8 +185,6 @@ public class ArticleDetailFragment extends Fragment implements
                 }
             }
         });
-
-
 
         //Dixit:commenting to move the call , as its called from onLoadFinished()
         //bindViews();
@@ -240,10 +227,7 @@ public class ArticleDetailFragment extends Fragment implements
         if (mRootView == null) {
             return;
         }
-
-
-        final CollapsingToolbarLayout collapsingToolbar =(CollapsingToolbarLayout) mRootView.findViewById(R.id.photo_container);
-
+        final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) mRootView.findViewById(R.id.photo_container);
 
         TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
@@ -301,7 +285,7 @@ public class ArticleDetailFragment extends Fragment implements
         } else {
             mRootView.setVisibility(View.GONE);
             titleView.setText("N/A");
-            bylineView.setText("N/A" );
+            bylineView.setText("N/A");
             bodyView.setText("N/A");
         }
     }

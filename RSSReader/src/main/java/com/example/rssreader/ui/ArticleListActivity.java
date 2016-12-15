@@ -138,10 +138,10 @@ public class ArticleListActivity extends ActionBarActivity implements
                             ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())));
 
                     ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                                    ArticleListActivity.this,
-                                    vh.thumbnailView,
-                                    getString(R.string.image_transit));
-                    ActivityCompat.startActivity(ArticleListActivity.this,intent,options.toBundle());
+                            ArticleListActivity.this,
+                            vh.thumbnailView,
+                            getString(R.string.image_transit));
+                    ActivityCompat.startActivity(ArticleListActivity.this, intent, options.toBundle());
                 }
             });
             return vh;
