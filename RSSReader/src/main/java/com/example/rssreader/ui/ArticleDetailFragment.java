@@ -10,10 +10,14 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.ShareCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
@@ -36,7 +40,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.rssreader.R;
 import com.example.rssreader.data.ArticleLoader;
 
-import static com.example.rssreader.R.id.toolbar;
+import static android.content.Context.CONNECTIVITY_SERVICE;
 
 /**
  * A fragment representing a single Article detail screen. This fragment is
@@ -109,27 +113,28 @@ public class ArticleDetailFragment extends Fragment implements
         getLoaderManager().initLoader(0, null, this);
 
 
-        Toolbar toolbar = (Toolbar)mRootView.findViewById(R.id.detail_toolbar);
+        //Dixit:Supporting Back Navigation button : setDisplayHomeAsUpEnabled, doesn't work
+        //along with the ViewPager , so we switch to a van button implementation as below:
 
-        AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
-        appCompatActivity.setSupportActionBar(toolbar);
-
-        ActionBar actionBar = appCompatActivity.getSupportActionBar();
-//        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayUseLogoEnabled(true);
-//        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-
-        //Dixit:Supporting Back Navigation button
 //        Toolbar toolbar = (Toolbar)mRootView.findViewById(R.id.detail_toolbar);
-//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getActivity().onBackPressed();
-//            }
-//        });
+//        AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
+//        appCompatActivity.setSupportActionBar(toolbar);
+//        ActionBar actionBar = appCompatActivity.getSupportActionBar();
+////        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayUseLogoEnabled(true);
+////        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        actionBar.setHomeButtonEnabled(true);
 
+        Toolbar toolbar = (Toolbar)mRootView.findViewById(R.id.detail_toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
+        bindViews();
 
     }
 
@@ -176,16 +181,27 @@ public class ArticleDetailFragment extends Fragment implements
         mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
-                        .setType("text/plain")
-                        .setText("Some sample text")
-                        .getIntent(), getString(R.string.action_share)));
+
+                ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(CONNECTIVITY_SERVICE);
+                NetworkInfo netwrkInfo = cm.getActiveNetworkInfo();
+                if (netwrkInfo == null || !netwrkInfo.isConnected()) {
+                    Snackbar.make(view, R.string.nonetwork, Snackbar.LENGTH_LONG).show();
+
+                }
+                else {
+                    startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
+                            .setType("text/plain")
+                            .setText("Some sample text")
+                            .getIntent(), getString(R.string.action_share)));
+                }
             }
         });
 
 
 
-        bindViews();
+        //Dixit:commenting to move the call , as its called from onLoadFinished()
+        //bindViews();
+
 //        updateStatusBar();
 
         return mRootView;
@@ -254,13 +270,13 @@ public class ArticleDetailFragment extends Fragment implements
                             + "</font>"));
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY)));
 
-
+            //Dixit:loading Image with GLide
             Glide.with(this)
                     .load(mCursor.getString(ArticleLoader.Query.PHOTO_URL))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .dontAnimate()
+                    .crossFade()
                     .into(mPhotoView);
-
 //            ImageLoaderHelper.getInstance(getActivity()).getImageLoader()
 //                    .get(mCursor.getString(ArticleLoader.Query.PHOTO_URL), new ImageLoader.ImageListener() {
 //                        @Override

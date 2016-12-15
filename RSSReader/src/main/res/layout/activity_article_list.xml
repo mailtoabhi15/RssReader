@@ -7,7 +7,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/toolbar_container"
         android:layout_width="match_parent"
-        android:layout_height="168dp"
+        android:layout_height="112dp"
         android:background="?colorPrimary">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -23,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:layout_gravity="bottom"
-                app:layout_collapseMode="pin">
+                app:layout_collapseMode="pin"
+                android:elevation="4dp" >
 
                 <ImageView
                     android:layout_width="match_parent"
